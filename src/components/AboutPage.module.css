@@ -1,0 +1,320 @@
+.page {
+  min-inline-size: 0;
+}
+
+.eyebrow,
+.inverseEyebrow {
+  margin-block-end: var(--rm-space-5);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+  text-transform: uppercase;
+}
+
+.hero {
+  padding-block: clamp(var(--rm-space-16), 7vw, 104px);
+}
+
+.heroGrid {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-10) var(--rm-space-12);
+}
+
+.heroIntro,
+.heroBody {
+  min-inline-size: 0;
+}
+
+.heroIntro h1 {
+  max-inline-size: 14ch;
+  margin-block-end: var(--rm-space-6);
+}
+
+.heroSubheading {
+  max-inline-size: 21ch;
+  margin: 0;
+  color: var(--rm-ink);
+  font-family: var(--rm-font-sans);
+  font-size: var(--rm-fs-h2);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-h2);
+  letter-spacing: var(--rm-tracking-h2);
+}
+
+.heroBody {
+  max-inline-size: var(--rm-measure-narrow);
+  font-size: var(--rm-fs-body-large);
+  line-height: var(--rm-lh-body-large);
+}
+
+.heroBody p:last-of-type {
+  margin-block-end: 0;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rm-space-3);
+  margin-block-start: var(--rm-space-7);
+}
+
+.purposeGrid,
+.backgroundGrid,
+.boundaryGrid,
+.ownerGrid {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-8) var(--rm-space-12);
+}
+
+.prose {
+  max-inline-size: var(--rm-measure-narrow);
+}
+
+.prose p:last-child {
+  margin-block-end: 0;
+}
+
+.founderNote h3 {
+  font-size: var(--rm-fs-h4);
+}
+
+.draftLabel {
+  padding: var(--rm-space-3) var(--rm-space-4);
+  border-inline-start: 2px solid var(--rm-border-control);
+  background: var(--rm-surface-muted);
+  color: var(--rm-ink);
+  font-size: var(--rm-fs-small);
+}
+
+.founderSignature {
+  font-weight: var(--rm-weight-semibold);
+}
+
+.purposeClosing {
+  max-inline-size: var(--rm-measure-editorial);
+  margin: var(--rm-space-8) 0 0;
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.priorityList {
+  margin: 0;
+  border-block-start: 1px solid var(--rm-rule);
+  counter-reset: priorities;
+}
+
+.priorityList li {
+  display: grid;
+  grid-template-columns: var(--rm-space-10) minmax(0, 1fr);
+  gap: var(--rm-space-3);
+  padding-block: var(--rm-space-4);
+  border-block-end: 1px solid var(--rm-rule);
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.priorityList span {
+  color: var(--rm-ink-muted);
+  font-family: var(--rm-font-mono);
+  font-size: var(--rm-fs-label);
+  letter-spacing: var(--rm-tracking-label);
+}
+
+.expectationGrid {
+  display: grid;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.expectation {
+  min-inline-size: 0;
+  padding-block: var(--rm-space-7);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.expectation h3 {
+  font-size: var(--rm-fs-h4);
+}
+
+.expectation p:last-child {
+  margin-block-end: 0;
+}
+
+.backgroundGrid > :first-child,
+.ownerGrid > :first-child {
+  margin-block-end: 0;
+}
+
+.boundaryIntroduction {
+  max-inline-size: 32ch;
+  color: var(--rm-ink);
+  font-size: var(--rm-fs-body-large);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-body-large);
+}
+
+.boundaryList {
+  margin: 0;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.boundaryList li {
+  padding: var(--rm-space-3) 0 var(--rm-space-3) var(--rm-space-6);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.boundaryClosing {
+  max-inline-size: var(--rm-measure-editorial);
+  margin: var(--rm-space-8) 0 0;
+  color: var(--rm-ink-body);
+}
+
+.independenceSection {
+  padding-block: var(--rm-space-8);
+  background: var(--rm-ink);
+}
+
+.independence {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-8) var(--rm-space-12);
+  color: var(--rm-rule);
+}
+
+.inverseEyebrow {
+  color: var(--rm-rule);
+}
+
+.independence h2,
+.independence li,
+.doesNot {
+  color: var(--rm-surface);
+}
+
+.independence p {
+  color: var(--rm-rule);
+}
+
+.doesNot {
+  margin-block-end: var(--rm-space-4);
+  font-weight: var(--rm-weight-bold);
+}
+
+.independence ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-block-start: 1px solid var(--rm-border-control);
+}
+
+.independence li {
+  padding-block: var(--rm-space-3);
+  border-block-end: 1px solid var(--rm-border-control);
+}
+
+.independenceClosing {
+  margin: 0;
+  font-weight: var(--rm-weight-semibold);
+}
+
+.finalConversion {
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.finalConversion h2 {
+  max-inline-size: 24ch;
+}
+
+.finalConversion > div > p {
+  max-inline-size: 61ch;
+}
+
+.finalActions {
+  display: grid;
+  gap: var(--rm-space-6);
+  margin-block-start: var(--rm-space-7);
+}
+
+.finalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rm-space-2) var(--rm-space-6);
+  margin: 0;
+}
+
+.finalLinks a {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .expectationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .expectation:nth-child(odd) {
+    padding-inline-end: var(--rm-space-7);
+    border-inline-end: 1px solid var(--rm-rule);
+  }
+
+  .expectation:nth-child(even) {
+    padding-inline-start: var(--rm-space-7);
+  }
+}
+
+@media (min-width: 900px) {
+  .heroGrid,
+  .purposeGrid,
+  .backgroundGrid,
+  .boundaryGrid,
+  .ownerGrid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .independence {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  }
+
+  .independenceClosing {
+    grid-column: 1 / -1;
+  }
+
+  .finalActions {
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+@media (max-width: 639px) {
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .heroActions > a,
+  .finalActions > a {
+    inline-size: 100%;
+  }
+
+  .finalLinks {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (forced-colors: active) {
+  .priorityList,
+  .priorityList li,
+  .expectationGrid,
+  .expectation,
+  .boundaryList,
+  .boundaryList li,
+  .finalConversion {
+    border-color: CanvasText;
+  }
+}
+
+.founderPhoto { display: block; width: 100%; max-width: 320px; height: auto; border-radius: 6px; margin-block-start: 1.5rem; }

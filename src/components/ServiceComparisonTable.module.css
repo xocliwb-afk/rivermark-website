@@ -1,0 +1,112 @@
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  color: var(--rm-ink-body);
+  table-layout: fixed;
+}
+
+.table caption {
+  margin-block-end: var(--rm-space-4);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-small);
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding: var(--rm-space-4);
+  border-block-end: 1px solid var(--rm-rule);
+  vertical-align: top;
+  text-align: start;
+}
+
+.table thead th {
+  border-block-start: 1px solid var(--rm-rule);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  line-height: var(--rm-lh-small);
+}
+
+.table tbody th {
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+@media (min-width: 641px) {
+  .table th:first-child,
+  .table td:first-child {
+    padding-inline-start: 0;
+  }
+
+  .table th:last-child,
+  .table td:last-child {
+    padding-inline-end: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .table,
+  .table caption,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+    inline-size: 100%;
+  }
+
+  .table thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .table tbody {
+    display: grid;
+    gap: var(--rm-space-4);
+  }
+
+  .table tr {
+    border-block: 1px solid var(--rm-rule);
+  }
+
+  .table th,
+  .table td {
+    min-inline-size: 0;
+    padding: var(--rm-space-4);
+  }
+
+  .table tbody th {
+    border-block-end: 1px solid var(--rm-rule);
+    background: var(--rm-surface-muted);
+  }
+
+  .table td::before,
+  .table tbody th::before {
+    display: block;
+    margin-block-end: var(--rm-space-2);
+    color: var(--rm-ink-muted);
+    content: attr(data-label);
+    font-size: var(--rm-fs-label);
+    font-weight: var(--rm-weight-bold);
+    line-height: var(--rm-lh-label);
+    letter-spacing: var(--rm-tracking-label);
+    text-transform: uppercase;
+  }
+}
+
+@media (forced-colors: active) {
+  .table th,
+  .table td,
+  .table tr {
+    border-color: CanvasText;
+  }
+}
+
+.serviceLink { color: var(--rm-ink); text-decoration: underline; text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+.serviceLink:hover { text-decoration-thickness: 2px; }

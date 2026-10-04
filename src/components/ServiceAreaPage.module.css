@@ -1,0 +1,232 @@
+.page {
+  min-inline-size: 0;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  min-block-size: 44px;
+  inline-size: fit-content;
+}
+
+.mapContainer {
+  max-inline-size: 1000px;
+  margin-inline: auto;
+}
+
+.availability {
+  margin-block: var(--rm-space-5) var(--rm-space-8);
+}
+
+.communityExamples {
+  margin-block-start: var(--rm-space-4);
+}
+
+.swatch {
+  display: inline-block;
+  inline-size: 24px;
+  block-size: 18px;
+  margin-inline-end: var(--rm-space-3);
+  border: 1px solid var(--rm-rule);
+  vertical-align: baseline;
+  background: var(--rm-surface-muted);
+}
+
+.included {
+  background: var(--rm-surface);
+  border: 2px solid var(--rm-oxide);
+}
+
+.extended {
+  background: var(--rm-canvas);
+  border: 1px dashed var(--rm-ink);
+}
+
+.by_arrangement {
+  background: var(--rm-surface-muted);
+}
+
+.heroPanel {
+  min-inline-size: 0;
+  padding: clamp(var(--rm-space-6), 4vw, var(--rm-space-8));
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-frame);
+  background: var(--rm-surface);
+}
+
+.heroPanel h2 {
+  font-size: var(--rm-fs-h3);
+}
+
+.heroPanel dl {
+  margin: 0;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.heroPanel dl > div {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.7fr) minmax(0, 1.3fr);
+  gap: var(--rm-space-4);
+  padding-block: var(--rm-space-4);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.heroPanel dt {
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-bold);
+}
+
+.heroPanel dd {
+  margin: 0;
+  color: var(--rm-ink-body);
+}
+
+.addressGrid {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-8) var(--rm-space-12);
+}
+
+.addressGrid > :first-child {
+  margin-block-end: 0;
+}
+
+.addressBody {
+  max-inline-size: var(--rm-measure-narrow);
+}
+
+.addressBody p:last-child {
+  margin-block-end: 0;
+}
+
+.addressAction {
+  margin-block: var(--rm-space-4) var(--rm-space-2);
+}
+
+.fallback {
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  line-height: var(--rm-lh-small);
+}
+
+.fallback a {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+}
+
+.page :global(#service-area-final-conversion) p a {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+}
+
+.zoneList {
+  display: grid;
+  gap: var(--rm-space-6);
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.zone {
+  min-inline-size: 0;
+  padding-block: var(--rm-space-6);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.zoneHeading,
+.zoneBody {
+  min-inline-size: 0;
+}
+
+.zoneIndex {
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+}
+
+.zoneIndex {
+  display: block;
+  margin-block-end: var(--rm-space-5);
+  font-family: var(--rm-font-mono);
+}
+
+.zone h3 {
+  max-inline-size: 25ch;
+  margin-block-end: var(--rm-space-3);
+}
+
+.zoneTitle {
+  max-inline-size: 34ch;
+  margin: 0;
+  color: var(--rm-ink);
+  font-size: var(--rm-fs-body-large);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-body-large);
+}
+
+.zoneBody p:last-child {
+  margin-block-end: 0;
+}
+
+.factorList {
+  display: grid;
+  gap: var(--rm-space-2);
+  margin-block: var(--rm-space-5);
+}
+
+.factorList li {
+  padding-block: var(--rm-space-1);
+}
+
+.zoneClosing {
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.pendingNote {
+  max-inline-size: var(--rm-measure-editorial);
+  margin: var(--rm-space-8) 0 0;
+  padding: var(--rm-space-5) var(--rm-space-6);
+  border-inline-start: var(--rm-space-1) solid var(--rm-oxide);
+  background: var(--rm-canvas);
+  color: var(--rm-ink-body);
+}
+
+@media (min-width: 800px) {
+  .addressGrid {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .zoneList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .factorList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--rm-space-10);
+  }
+}
+
+@media (max-width: 639px) {
+  .addressAction {
+    inline-size: 100%;
+  }
+
+  .heroPanel dl > div {
+    grid-template-columns: 1fr;
+    gap: var(--rm-space-1);
+  }
+}
+
+@media (forced-colors: active) {
+  .heroPanel,
+  .heroPanel dl,
+  .heroPanel dl > div,
+  .zoneList,
+  .zone,
+  .pendingNote {
+    border-color: CanvasText;
+  }
+}

@@ -1,0 +1,224 @@
+.page {
+  min-inline-size: 0;
+}
+
+.coreGrid,
+.statusGrid {
+  display: grid;
+  min-inline-size: 0;
+  align-items: start;
+  gap: var(--rm-space-10) var(--rm-space-16);
+}
+
+.coreCopy header {
+  margin-block-end: var(--rm-space-7);
+}
+
+.corePrice,
+.stagePanel,
+.conditionalItem {
+  min-inline-size: 0;
+  padding: clamp(var(--rm-space-6), 4vw, var(--rm-space-8));
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-frame);
+  background: var(--rm-surface);
+}
+
+.panelLabel,
+.eyebrow,
+.inverseEyebrow {
+  margin-block-end: var(--rm-space-5);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+  text-transform: uppercase;
+}
+
+.coreActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rm-space-5);
+}
+
+.supportingLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rm-space-3) var(--rm-space-5);
+}
+
+.supportingLinks a,
+.sectionLink {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+}
+
+.sectionLink {
+  margin-block-start: var(--rm-space-6);
+}
+
+.conditionalGrid {
+  display: grid;
+  gap: var(--rm-space-6);
+}
+
+.conditionalItem h3 {
+  font-size: var(--rm-fs-h3);
+}
+
+.priceLines,
+.stageList,
+.specialistList {
+  display: grid;
+  gap: var(--rm-space-3);
+}
+
+.priceLines {
+  padding-block-start: var(--rm-space-4);
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.newConstructionSection {
+  border-block: 1px solid var(--rm-rule);
+}
+
+.statusGrid h2 {
+  max-inline-size: 18ch;
+}
+
+.status {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+  margin-block: 0 var(--rm-space-6);
+  padding: var(--rm-space-2) var(--rm-space-4);
+  border: 1px solid var(--rm-border-control);
+  border-radius: var(--rm-radius-pill);
+  color: var(--rm-ink);
+  font-size: var(--rm-fs-small);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-small);
+}
+
+.stageList {
+  margin-block-end: 0;
+}
+
+.comparisonClosing {
+  max-inline-size: var(--rm-measure-editorial);
+  margin-block-start: var(--rm-space-7);
+  color: var(--rm-ink);
+}
+
+.comparisonClosing p:last-child,
+.specialist p:last-child,
+.conditionalItem p:last-of-type {
+  margin-block-end: 0;
+}
+
+.specialistSection {
+  padding-block: var(--rm-space-8);
+  background: var(--rm-ink);
+}
+
+.specialist {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-8) var(--rm-space-12);
+  color: var(--rm-rule);
+}
+
+.specialist h2,
+.specialist li {
+  color: var(--rm-surface);
+}
+
+.specialist p {
+  color: var(--rm-rule);
+}
+
+.inverseEyebrow {
+  color: var(--rm-rule);
+}
+
+.specialistList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.specialistList li {
+  position: relative;
+  padding: var(--rm-space-3) 0 var(--rm-space-3) var(--rm-space-6);
+  border-block-end: 1px solid var(--rm-border-control);
+}
+
+.specialistList li::before {
+  position: absolute;
+  inset-block-start: 1.15em;
+  inset-inline-start: 0;
+  inline-size: var(--rm-space-2);
+  block-size: var(--rm-space-2);
+  background: var(--rm-oxide);
+  content: "";
+}
+
+.specialistClosing {
+  padding-block-start: var(--rm-space-6);
+  border-block-start: 1px solid var(--rm-border-control);
+}
+
+@media (min-width: 720px) {
+  .conditionalGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 800px) {
+  .statusGrid {
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  }
+
+  .specialist {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .specialistClosing {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .coreGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .coreActions,
+  .supportingLinks {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .coreActions > a,
+  .supportingLinks a {
+    inline-size: 100%;
+  }
+}
+
+@media (forced-colors: active) {
+  .corePrice,
+  .stagePanel,
+  .conditionalItem,
+  .newConstructionSection,
+  .status,
+  .priceLines,
+  .specialistList li,
+  .specialistClosing {
+    border-color: CanvasText;
+  }
+}

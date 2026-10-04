@@ -1,0 +1,73 @@
+.root {
+  position: fixed;
+  z-index: calc(var(--rm-z-header) - 1);
+  inset-block-end: 0;
+  inset-inline: 0;
+  display: flex;
+  justify-content: center;
+  padding: var(--rm-space-2) var(--rm-layout-gutter)
+    calc(var(--rm-space-2) + env(safe-area-inset-bottom));
+  border-block-start: 1px solid var(--rm-rule);
+  background: var(--rm-surface);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    opacity var(--rm-transition-standard) var(--rm-ease-standard),
+    transform var(--rm-transition-standard) var(--rm-ease-standard),
+    visibility 0s linear var(--rm-transition-standard);
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.action {
+  inline-size: min(100%, var(--rm-reading-max));
+  min-block-size: var(--rm-control-height-large);
+}
+
+@media (max-width: 1023px) {
+  :global(html:has([data-rm-sticky-booking-visible="true"])) {
+    scroll-padding-block-end: calc(
+      var(--rm-control-height-large) + var(--rm-space-6) +
+        env(safe-area-inset-bottom)
+    );
+  }
+
+  :global(
+      html:has([data-rm-sticky-booking-visible="true"])
+        :where(
+          a,
+          button,
+          input,
+          select,
+          textarea,
+          summary,
+          [tabindex]:not([tabindex="-1"])
+        )
+    ) {
+    scroll-margin-block-end: calc(
+      var(--rm-control-height-large) + var(--rm-space-6) +
+        env(safe-area-inset-bottom)
+    );
+  }
+}
+
+@media (min-width: 1024px) {
+  .root {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transform: none;
+    transition: none;
+  }
+}

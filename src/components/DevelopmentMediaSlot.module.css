@@ -1,0 +1,164 @@
+.root {
+  position: relative;
+  min-inline-size: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-frame);
+  background: var(--rm-surface-muted);
+}
+
+.composition {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--rm-surface-muted);
+}
+
+.composition::before,
+.composition::after {
+  position: absolute;
+  content: "";
+}
+
+.composition::before {
+  inset-block: 12% 18%;
+  inset-inline-start: 18%;
+  inline-size: 46%;
+  border: 1px solid var(--rm-border-control);
+  background: var(--rm-canvas);
+}
+
+.composition::after {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inline-size: 34%;
+  block-size: 38%;
+  background: var(--rm-ink);
+}
+
+.planePrimary,
+.planeSecondary,
+.rule {
+  position: absolute;
+}
+
+.planePrimary {
+  inset-block-start: 24%;
+  inset-inline-end: 12%;
+  inline-size: 38%;
+  block-size: 31%;
+  border: 1px solid var(--rm-ink-muted);
+  background: var(--rm-surface);
+}
+
+.planeSecondary {
+  inset-block-end: 14%;
+  inset-inline-start: 9%;
+  inline-size: 18%;
+  aspect-ratio: 1;
+  background: var(--rm-oxide);
+}
+
+.rule {
+  inset-block-start: 15%;
+  inset-inline: 8%;
+  block-size: 1px;
+  background: var(--rm-rule);
+}
+
+.caption {
+  position: absolute;
+  inset-inline: var(--rm-space-4);
+  inset-block-end: var(--rm-space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--rm-space-3);
+  margin: 0;
+  padding: var(--rm-space-3) var(--rm-space-4);
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-control);
+  background: var(--rm-surface);
+  color: var(--rm-ink);
+}
+
+.key {
+  flex: none;
+  color: var(--rm-ink-muted);
+  font-family: var(--rm-font-mono);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+}
+
+.annotation {
+  font-size: var(--rm-fs-small);
+  font-weight: var(--rm-weight-semibold);
+  line-height: 1.3;
+  text-align: end;
+}
+
+.portrait .composition::before {
+  inset-block: 9% 25%;
+  inset-inline-start: 13%;
+  inline-size: 57%;
+}
+
+.portrait .composition::after {
+  inline-size: 43%;
+  block-size: 30%;
+}
+
+.portrait .planePrimary {
+  inset-block-start: 31%;
+  inset-inline-end: 9%;
+  inline-size: 45%;
+  block-size: 27%;
+}
+
+.field .composition::before {
+  inset-block: 16% 20%;
+  inset-inline-start: 10%;
+  inline-size: 52%;
+}
+
+.field .composition::after {
+  inline-size: 28%;
+  block-size: 48%;
+}
+
+.field .planePrimary {
+  inset-block-start: 19%;
+  inset-inline-end: 10%;
+  inline-size: 42%;
+  block-size: 38%;
+}
+
+@media (min-width: 768px) {
+  .caption {
+    inset-inline: var(--rm-space-5);
+    inset-block-end: var(--rm-space-5);
+  }
+}
+
+@media (max-width: 639px) {
+  .caption {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .annotation {
+    text-align: start;
+  }
+}
+
+@media (forced-colors: active) {
+  .root,
+  .caption,
+  .composition::before,
+  .planePrimary {
+    border-color: CanvasText;
+  }
+}

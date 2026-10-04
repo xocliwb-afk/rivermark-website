@@ -1,0 +1,43 @@
+.logoLink {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  max-inline-size: 100%;
+  min-block-size: 44px;
+  text-decoration: none;
+}
+
+.headerLogo,
+.footerLogo {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+.desktopLogo {
+  display: none;
+  inline-size: clamp(208px, 17vw, 220px);
+}
+
+.mobileLogo {
+  display: block;
+  inline-size: clamp(110px, 31vw, 132px);
+}
+
+.footerLogoLink {
+  inline-size: clamp(208px, 17vw, 220px);
+}
+
+.footerLogo {
+  inline-size: 100%;
+}
+
+@media (min-width: 75rem) {
+  .desktopLogo {
+    display: block;
+  }
+
+  .mobileLogo {
+    display: none;
+  }
+}

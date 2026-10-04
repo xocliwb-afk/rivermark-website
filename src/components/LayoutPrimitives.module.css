@@ -1,0 +1,34 @@
+.container {
+  inline-size: 100%;
+  max-inline-size: calc(var(--container-width) + (2 * var(--rm-layout-gutter)));
+  margin-inline: auto;
+  padding-inline: var(--rm-layout-gutter);
+}
+
+.content {
+  --container-width: var(--rm-container-max);
+}
+
+.reading {
+  --container-width: var(--rm-reading-max);
+}
+
+.page {
+  --container-width: var(--rm-page-max);
+}
+
+.section {
+  padding-block: var(--rm-section-space);
+}
+
+.canvas {
+  background: var(--rm-canvas);
+}
+
+.surface {
+  background: var(--rm-surface);
+}
+
+.muted {
+  background: var(--rm-surface-muted);
+}

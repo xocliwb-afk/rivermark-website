@@ -1,0 +1,39 @@
+{
+  "provenance": "Independent supplied SVGs recorded before A125; copied only after old evidence-manifest and conversion hashes verified. Never refresh from runtime code.",
+  "reviewPack": "/home/brandon/Rivermark/review-packs/SERVICE_AREA_MAP_INTEGRATION_2026-10-03_15-28-41",
+  "conversionSha256": "5432ef34742a7e91daf3295407cf870d2185cf79aaf77869a9b9de240e73e285",
+  "artworks": [
+    {
+      "file": "rm-hero-map-desktop.svg",
+      "sha256": "56a32ab7526a365df2c0f5965c119aafa03f5d539882e82904c823562a3e74c2",
+      "artwork": "hero-wide",
+      "component": "src/components/maps/HeroWideMap.tsx",
+      "geometryElements": 18,
+      "viewBox": "0 0 560 459"
+    },
+    {
+      "file": "rm-hero-map-phone.svg",
+      "sha256": "297e4dd686ead37cfafed3fb2c1d94eea0c455d804ea3801e6fc06e678c216ad",
+      "artwork": "hero-compact",
+      "component": "src/components/maps/HeroCompactMap.tsx",
+      "geometryElements": 15,
+      "viewBox": "0 0 350 295"
+    },
+    {
+      "file": "rm-service-area-map-desktop.svg",
+      "sha256": "57861286f073f693f1cfa3ca122b93939bb6ab5f8df48fef7ba2614501eacc17",
+      "artwork": "full-wide",
+      "component": "src/components/maps/FullWideMap.tsx",
+      "geometryElements": 66,
+      "viewBox": "0 0 1000 997"
+    },
+    {
+      "file": "rm-service-area-map-phone.svg",
+      "sha256": "21680e7a793ed90a404f0c83bb4fabc3fce225969b8594e80d453de6bf58bafe",
+      "artwork": "full-compact",
+      "component": "src/components/maps/FullCompactMap.tsx",
+      "geometryElements": 34,
+      "viewBox": "0 0 390 422"
+    }
+  ]
+}

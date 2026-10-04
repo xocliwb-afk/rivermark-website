@@ -1,0 +1,32 @@
+{
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "test:forms": "node scripts/inquiries.cjs test && node --test tests/gmail-oauth.test.mjs",
+    "forms:authorize": "node scripts/configure-gmail-oauth.mjs",
+    "forms:send-test": "node scripts/inquiries.cjs send-qa",
+    "test:publication": "node --test tests/publication.test.cjs",
+    "test:search": "node --test tests/resource-search.test.cjs tests/map-guards.test.cjs tests/travel-policy.test.cjs && node scripts/check-map-browser.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "nodemailer": "10.0.13",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "typescript": "^5"
+  }
+}

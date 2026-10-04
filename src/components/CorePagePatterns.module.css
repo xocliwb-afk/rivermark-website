@@ -1,0 +1,204 @@
+.eyebrow {
+  margin-block-end: var(--rm-space-5);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+  text-transform: uppercase;
+}
+
+.hero {
+  padding-block: clamp(var(--rm-space-16), 7vw, 104px);
+}
+
+.heroGrid {
+  display: grid;
+  min-inline-size: 0;
+  align-items: center;
+  gap: var(--rm-space-10);
+}
+
+.heroCopy,
+.heroAside {
+  min-inline-size: 0;
+}
+
+.heroCopy h1 {
+  max-inline-size: 15ch;
+  margin-block-end: var(--rm-space-6);
+  overflow-wrap: normal;
+}
+
+.heroBody {
+  max-inline-size: 61ch;
+  margin-block-end: var(--rm-space-7);
+  font-size: var(--rm-fs-body-large);
+  line-height: var(--rm-lh-body-large);
+}
+
+.heroBody p:last-child,
+.sectionLead p:last-child,
+.faqAnswer p:last-child {
+  margin-block-end: 0;
+}
+
+.heroAside {
+  display: grid;
+  gap: var(--rm-space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rm-space-3);
+  margin-block-start: var(--rm-space-7);
+}
+
+.proofLine {
+  max-inline-size: 62ch;
+  margin: var(--rm-space-6) 0 0;
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-small);
+}
+
+.proofPhrase {
+  white-space: nowrap;
+}
+
+.sectionHeader {
+  max-inline-size: var(--rm-measure-editorial);
+  margin-block-end: var(--rm-space-12);
+}
+
+.sectionHeader h2 {
+  max-inline-size: 27ch;
+}
+
+.sectionLead {
+  max-inline-size: var(--rm-measure-narrow);
+  color: var(--rm-ink-body);
+  font-size: var(--rm-fs-body-large);
+  line-height: var(--rm-lh-body-large);
+}
+
+.faqList {
+  max-inline-size: 900px;
+  margin-inline: auto;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.faqItem {
+  scroll-margin-block-start: calc(var(--rm-space-16) + var(--rm-space-8));
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.faqSummary {
+  position: relative;
+  display: flex;
+  min-block-size: var(--rm-control-height-emphasis);
+  align-items: center;
+  padding: var(--rm-space-5) var(--rm-space-10) var(--rm-space-5) 0;
+  color: var(--rm-ink);
+  cursor: pointer;
+  font-size: var(--rm-fs-h4);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-h4);
+  list-style: none;
+}
+
+.faqSummary::-webkit-details-marker {
+  display: none;
+}
+
+.faqSummary::after {
+  position: absolute;
+  inset-inline-end: var(--rm-space-2);
+  color: var(--rm-ink-muted);
+  content: "+";
+  font-family: var(--rm-font-sans);
+  font-size: 22px;
+  font-weight: var(--rm-weight-regular);
+  line-height: 1;
+  transition: transform var(--rm-transition-fast) var(--rm-ease-standard);
+}
+
+.faqItem[open] .faqSummary::after {
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  max-inline-size: var(--rm-measure-editorial);
+  padding: 0 var(--rm-space-8) var(--rm-space-6) 0;
+  color: var(--rm-ink-body);
+}
+
+.finalCta {
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.finalCta h2 {
+  max-inline-size: 23ch;
+}
+
+.finalCta p {
+  max-inline-size: 61ch;
+}
+
+.fallback {
+  margin-block: var(--rm-space-6) 0;
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  line-height: var(--rm-lh-small);
+}
+
+@media (min-width: 640px) {
+  .actions > a {
+    min-inline-size: 190px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroGrid:has(.heroAside) {
+    grid-template-columns: minmax(0, 1.32fr) minmax(360px, 0.88fr);
+    gap: clamp(var(--rm-space-10), 5vw, var(--rm-space-16));
+  }
+}
+
+@media (max-width: 639px) {
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions > a {
+    inline-size: 100%;
+  }
+
+  .sectionHeader {
+    margin-block-end: var(--rm-space-8);
+  }
+}
+
+@media (max-width: 359px) {
+  .hero {
+    padding-block-start: var(--rm-space-12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqSummary::after {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .faqList,
+  .faqItem,
+  .finalCta {
+    border-color: CanvasText;
+  }
+}

@@ -1,0 +1,174 @@
+:root {
+  /* Approved mineral-neutral palette */
+  --rm-canvas: #F4F1EA;
+  --rm-surface: #FFFFFF;
+  --rm-surface-muted: #EAE7DF;
+  --rm-ink: #202421;
+  --rm-ink-body: #3A403C;
+  --rm-ink-muted: #5F625D;
+  --rm-rule: #D7D4CB;
+  --rm-border-control: #8B8E88;
+  --rm-action: #202421;
+  --rm-action-hover: #111513;
+  --rm-oxide: #965A44;
+  --rm-oxide-tint: #F1E3DC;
+
+  /* Functional colors remain separate from the identity palette. */
+  --rm-focus: #202421;
+  --rm-focus-ring: var(--rm-focus);
+  --rm-error: #9B2226;
+  --rm-success: #2F5D3F;
+  --rm-warning: #7A5200;
+  --rm-information: #3A403C;
+  --rm-disabled-text: #5F625D;
+  --rm-disabled-surface: #EAE7DF;
+
+  /* next/font supplies the first family in each stack at the root layout. */
+  --rm-font-sans:
+    var(--rm-font-source-sans, "Source Sans 3"), "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  --rm-font-mono:
+    var(--rm-font-ibm-plex-mono, "IBM Plex Mono"), Consolas, "Courier New",
+    monospace;
+
+  --rm-weight-regular: 400;
+  --rm-weight-medium: 500;
+  --rm-weight-semibold: 600;
+  --rm-weight-bold: 700;
+
+  --rm-fs-display: clamp(34px, 1.9rem + 2.4vw, 56px);
+  --rm-fs-h2: clamp(26px, 1.5rem + 1.4vw, 36px);
+  --rm-fs-h3: clamp(20px, 1.15rem + 0.6vw, 24px);
+  --rm-fs-h4: clamp(17px, 1rem + 0.2vw, 18px);
+  --rm-fs-body-large: clamp(17px, 1rem + 0.35vw, 19px);
+  --rm-fs-body: 16px;
+  --rm-fs-small: 14px;
+  --rm-fs-label: 12px;
+  --rm-fs-nav: 15px;
+  --rm-fs-action: 16px;
+  --rm-fs-price: clamp(30px, 1.6rem + 1.4vw, 40px);
+  --rm-fs-measured: 15px;
+
+  --rm-lh-display: 1.06;
+  --rm-lh-h2: 1.15;
+  --rm-lh-h3: 1.25;
+  --rm-lh-h4: 1.35;
+  --rm-lh-body-large: 1.6;
+  --rm-lh-body: 1.65;
+  --rm-lh-small: 1.55;
+  --rm-lh-label: 1;
+  --rm-lh-nav: 1;
+  --rm-lh-action: 1;
+  --rm-lh-price: 1;
+  --rm-lh-measured: 1.5;
+
+  --rm-tracking-display: -0.022em;
+  --rm-tracking-h2: -0.016em;
+  --rm-tracking-h3: -0.008em;
+  --rm-tracking-label: 0.09em;
+  --rm-tracking-action: 0.005em;
+
+  /* Four-pixel spacing base; names identify multiples of that base. */
+  --rm-space-1: 4px;
+  --rm-space-2: 8px;
+  --rm-space-3: 12px;
+  --rm-space-4: 16px;
+  --rm-space-5: 20px;
+  --rm-space-6: 24px;
+  --rm-space-7: 28px;
+  --rm-space-8: 32px;
+  --rm-space-10: 40px;
+  --rm-space-12: 48px;
+  --rm-space-16: 64px;
+  --rm-space-24: 96px;
+  --rm-space-32: 128px;
+
+  --rm-page-max: 1440px;
+  --rm-container-max: 1160px;
+  --rm-reading-max: 720px;
+  --rm-measure-editorial: 68ch;
+  --rm-measure-wide: 74ch;
+  --rm-measure-narrow: 58ch;
+
+  --rm-gutter-desktop: 40px;
+  --rm-gutter-tablet: 32px;
+  --rm-gutter-mobile: 20px;
+  --rm-gutter-small: 16px;
+  --rm-layout-gutter: var(--rm-gutter-small);
+
+  --rm-section-space-desktop: 96px;
+  --rm-section-space-tablet: 72px;
+  --rm-section-space-mobile: 60px;
+  --rm-section-space: var(--rm-section-space-mobile);
+
+  --rm-radius-control: 6px;
+  --rm-radius-standard: 7px;
+  --rm-radius-frame: 8px;
+  --rm-radius-pill: 999px;
+
+  --rm-control-height-compact: 44px;
+  --rm-control-height: 48px;
+  --rm-control-height-large: 52px;
+  --rm-control-height-emphasis: 56px;
+
+  --rm-header-height-desktop: 76px;
+  --rm-header-height-mobile: 60px;
+  --rm-header-height: var(--rm-header-height-mobile);
+  --rm-scroll-margin-desktop: 92px;
+  --rm-scroll-margin-mobile: 76px;
+  --rm-scroll-margin: var(--rm-scroll-margin-mobile);
+
+  --rm-focus-width: 2px;
+  --rm-focus-offset: 3px;
+  --rm-transition-fast: 120ms;
+  --rm-transition-standard: 180ms;
+  --rm-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --rm-transition-interactive:
+    color var(--rm-transition-fast) var(--rm-ease-standard),
+    background-color var(--rm-transition-fast) var(--rm-ease-standard),
+    border-color var(--rm-transition-fast) var(--rm-ease-standard),
+    text-decoration-thickness var(--rm-transition-fast) var(--rm-ease-standard);
+
+  --rm-z-base: 0;
+  --rm-z-header: 100;
+  --rm-z-disclosure: 200;
+  --rm-z-mobile-menu: 300;
+  --rm-z-skip-link: 400;
+}
+
+@media (min-width: 360px) {
+  :root {
+    --rm-layout-gutter: var(--rm-gutter-mobile);
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --rm-section-space: var(--rm-section-space-tablet);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rm-layout-gutter: var(--rm-gutter-tablet);
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --rm-section-space: var(--rm-section-space-desktop);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --rm-header-height: var(--rm-header-height-desktop);
+    --rm-scroll-margin: var(--rm-scroll-margin-desktop);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --rm-layout-gutter: var(--rm-gutter-desktop);
+  }
+}

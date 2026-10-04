@@ -1,0 +1,25 @@
+.skipLink {
+  position: fixed;
+  z-index: var(--rm-z-skip-link);
+  inset-block-start: var(--rm-space-3);
+  inset-inline-start: var(--rm-layout-gutter);
+  min-block-size: var(--rm-control-height-compact);
+  padding: var(--rm-space-3) var(--rm-space-4);
+  translate: 0 calc(-100% - var(--rm-space-6));
+  border-radius: var(--rm-radius-control);
+  background: var(--rm-action);
+  color: var(--rm-surface);
+  font-weight: var(--rm-weight-semibold);
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.skipLink:focus {
+  translate: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skipLink {
+    transition: translate var(--rm-transition-fast) var(--rm-ease-standard);
+  }
+}

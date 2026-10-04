@@ -1,0 +1,241 @@
+.page {
+  min-inline-size: 0;
+}
+
+.heroPanel,
+.startPanel,
+.rolePanel,
+.bodyPanel,
+.notePanel,
+.boundaryPanel {
+  min-inline-size: 0;
+  padding: clamp(var(--rm-space-6), 4vw, var(--rm-space-8));
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-frame);
+  background: var(--rm-surface);
+}
+
+.heroPanel h2 {
+  font-size: var(--rm-fs-h3);
+}
+
+.heroPanel ul,
+.rolePanel ul,
+.boundaryPanel ul,
+.independence ul {
+  display: grid;
+  gap: var(--rm-space-3);
+  margin-block: var(--rm-space-5);
+  padding-inline-start: var(--rm-space-6);
+}
+
+.heroFallback,
+.sectionLink {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+  margin-block-start: var(--rm-space-5);
+}
+
+.expectationList,
+.groupGrid,
+.resourceGrid {
+  display: grid;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.expectation,
+.group,
+.resource {
+  min-inline-size: 0;
+  padding-block: var(--rm-space-7);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.expectation {
+  display: grid;
+  grid-template-columns: var(--rm-space-10) minmax(0, 1fr);
+  gap: var(--rm-space-3);
+}
+
+.expectation h3,
+.group h3,
+.resource h3,
+.startPanel h3,
+.rolePanel h3,
+.boundaryPanel h3 {
+  font-size: var(--rm-fs-h4);
+}
+
+.expectation p:last-child,
+.group p:last-child,
+.resource p:last-child,
+.startPanel p:last-child,
+.rolePanel p:last-child,
+.bodyPanel p:last-child,
+.notePanel p:last-child {
+  margin-block-end: 0;
+}
+
+.index,
+.statusLine {
+  color: var(--rm-ink-muted);
+  font-family: var(--rm-font-mono);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+}
+
+.index {
+  padding-block-start: 0.45em;
+}
+
+.statusLine {
+  margin-block-end: var(--rm-space-4);
+  text-transform: uppercase;
+}
+
+.startGrid,
+.rolesGrid,
+.preparationGrid,
+.boundaryGrid {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-8) var(--rm-space-12);
+}
+
+.checklistColumns {
+  display: grid;
+  gap: var(--rm-space-3);
+  margin: 0;
+  padding: var(--rm-space-7) 0 var(--rm-space-7) var(--rm-space-6);
+  border-block: 1px solid var(--rm-rule);
+}
+
+.notePanel {
+  align-self: start;
+}
+
+.independenceSection {
+  padding-block: var(--rm-space-8);
+  background: var(--rm-ink);
+}
+
+.independence {
+  display: grid;
+  gap: var(--rm-space-8);
+  color: var(--rm-rule);
+}
+
+.independence h2,
+.independence li {
+  color: var(--rm-surface);
+}
+
+.independence p {
+  color: var(--rm-rule);
+}
+
+.independence ul {
+  margin: 0;
+}
+
+.independence li {
+  padding-block: var(--rm-space-2);
+  border-block-end: 1px solid var(--rm-border-control);
+}
+
+.inverseEyebrow {
+  margin-block-end: var(--rm-space-5);
+  color: var(--rm-rule);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+  text-transform: uppercase;
+}
+
+.resourcesClosing {
+  max-inline-size: var(--rm-measure-editorial);
+  margin: var(--rm-space-7) 0 0;
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  line-height: var(--rm-lh-small);
+}
+
+@media (min-width: 720px) {
+  .expectationList,
+  .groupGrid,
+  .resourceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .expectation:nth-child(odd),
+  .group:nth-child(odd),
+  .resource:nth-child(odd) {
+    padding-inline-end: var(--rm-space-7);
+    border-inline-end: 1px solid var(--rm-rule);
+  }
+
+  .expectation:nth-child(even),
+  .group:nth-child(even),
+  .resource:nth-child(even) {
+    padding-inline-start: var(--rm-space-7);
+  }
+
+  .expectation:last-child:nth-child(odd),
+  .group:last-child:nth-child(odd),
+  .resource:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    padding-inline-end: 0;
+    border-inline-end: 0;
+  }
+
+  .checklistColumns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--rm-space-12);
+  }
+}
+
+@media (min-width: 900px) {
+  .startGrid,
+  .rolesGrid,
+  .preparationGrid,
+  .boundaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .independence {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .independence > p {
+    grid-column: 1 / -1;
+    max-inline-size: var(--rm-measure-editorial);
+  }
+}
+
+@media (max-width: 719px) {
+  .expectation {
+    grid-template-columns: var(--rm-space-8) minmax(0, 1fr);
+  }
+}
+
+@media (forced-colors: active) {
+  .heroPanel,
+  .startPanel,
+  .rolePanel,
+  .bodyPanel,
+  .notePanel,
+  .boundaryPanel,
+  .expectationList,
+  .groupGrid,
+  .resourceGrid,
+  .expectation,
+  .group,
+  .resource,
+  .checklistColumns {
+    border-color: CanvasText;
+  }
+}

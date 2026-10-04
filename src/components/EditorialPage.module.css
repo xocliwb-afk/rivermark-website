@@ -1,0 +1,34 @@
+.header { padding-block: clamp(48px, 7vw, 96px) 40px; }
+.header h1 { max-inline-size: 22ch; }
+.eyebrow { color: var(--rm-ink-muted); font-weight: var(--rm-weight-semibold); }
+.lead { max-inline-size: 65ch; font-size: var(--rm-fs-body-large); }
+.breadcrumbs { margin-block-end: 24px; }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.breadcrumbs a { display: inline-flex; align-items: center; min-block-size: 44px; }
+.body { padding-block: 32px 64px; background: var(--rm-surface); border-block-start: 1px solid var(--rm-rule); }
+.body h2 { margin-block-start: 48px; max-inline-size: 30ch; }
+.body h3 { margin-block-start: 32px; }
+.body li { margin-block-end: 10px; }
+.body section, .body h2 { scroll-margin-block-start: var(--rm-scroll-margin); }
+.notice { padding: 24px; background: var(--rm-surface-muted); border-inline-start: 3px solid var(--rm-ink); margin-block: 24px; }
+.notice p:last-child { margin-block-end: 0; }
+.contents { border-block-end: 1px solid var(--rm-rule); padding-block-end: 24px; }
+.contents a { display: inline-block; padding-block: 8px; }
+.resources { list-style: none; padding: 0; }
+.resources li { padding-block: 32px; border-block-end: 1px solid var(--rm-rule); }
+.resources h2 { margin-block-start: 0; }
+.related { padding-block: 40px; border-block-start: 1px solid var(--rm-rule); }
+.related li { margin-block: 12px; }
+.related a { display: inline-block; padding-block: 8px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-block: 24px 40px; }
+@media (max-width: 639px) { .actions { flex-direction: column; } }
+
+.document { min-width: 0; overflow-wrap: anywhere; }
+.document > h2 { margin-block-start: 3rem; }
+.document > h3 { margin-block-start: 1.75rem; }
+.document li + li { margin-block-start: .4rem; }
+.artifactAction { max-inline-size: 100%; padding-block: 12px; white-space: normal; overflow-wrap: anywhere; }
+
+.samplePreview { margin: 24px 0; }
+.samplePreview img { display: block; width: 100%; max-width: 32rem; height: auto; border: 1px solid var(--rm-rule); }
+.samplePreview figcaption { margin-top: 1rem; max-width: 65ch; font-size: 1rem; }

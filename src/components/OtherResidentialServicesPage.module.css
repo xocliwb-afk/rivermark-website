@@ -1,0 +1,279 @@
+.page {
+  min-inline-size: 0;
+}
+
+.distinctionPanel,
+.pricePanel,
+.consultation,
+.boundaryNote,
+.metricPanel {
+  min-inline-size: 0;
+  padding: clamp(var(--rm-space-6), 4vw, var(--rm-space-8));
+  border: 1px solid var(--rm-rule);
+  border-radius: var(--rm-radius-frame);
+  background: var(--rm-surface);
+}
+
+.panelLabel,
+.groupLabel {
+  margin-block-end: var(--rm-space-4);
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-label);
+  font-weight: var(--rm-weight-bold);
+  line-height: var(--rm-lh-label);
+  letter-spacing: var(--rm-tracking-label);
+  text-transform: uppercase;
+}
+
+.distinctionList {
+  display: grid;
+  margin: 0;
+}
+
+.distinctionList > div {
+  padding-block: var(--rm-space-4);
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.distinctionList > div:last-child {
+  padding-block-end: 0;
+}
+
+.distinctionList dt {
+  margin-block-end: var(--rm-space-2);
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.distinctionList dd {
+  color: var(--rm-ink-body);
+}
+
+.serviceList,
+.adjustmentList {
+  display: grid;
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.serviceGroup,
+.adjustmentGroup {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--rm-space-7) var(--rm-space-12);
+  padding-block: var(--rm-space-10);
+  border-block-end: 1px solid var(--rm-rule);
+}
+
+.serviceHeading h3,
+.adjustmentGroup h3 {
+  max-inline-size: 24ch;
+}
+
+.serviceBody,
+.adjustmentGroup > *,
+.followUpGrid > * {
+  min-inline-size: 0;
+}
+
+.serviceBody > p:last-of-type,
+.consultation > p:last-child,
+.boundaryNote > p:last-child,
+.adjustmentClosing p:last-child,
+.comparisonClosing p:last-child {
+  margin-block-end: 0;
+}
+
+.detailList,
+.outcomeList {
+  display: grid;
+  gap: var(--rm-space-2);
+}
+
+.pricePanel {
+  margin-block-start: var(--rm-space-7);
+}
+
+.supplementaryPrice {
+  margin: var(--rm-space-5) 0 0;
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.consultationGrid {
+  display: grid;
+  gap: var(--rm-space-6);
+}
+
+.titlePrice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--rm-space-3) var(--rm-space-5);
+  align-items: baseline;
+  margin-block-end: var(--rm-space-5);
+}
+
+.titlePrice h3,
+.singlePrice {
+  margin-block-end: 0;
+}
+
+.singlePrice,
+.metricList dd,
+.adjustmentValues dd {
+  color: var(--rm-ink);
+  font-family: var(--rm-font-mono);
+  font-size: var(--rm-fs-measured);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-measured);
+}
+
+.boundaryNote {
+  max-inline-size: var(--rm-measure-wide);
+  margin-block-start: var(--rm-space-8);
+  background: transparent;
+}
+
+.boundaryNote h3 {
+  font-size: var(--rm-fs-h4);
+}
+
+.followUpGrid {
+  display: grid;
+  min-inline-size: 0;
+  align-items: start;
+  gap: var(--rm-space-10) var(--rm-space-16);
+}
+
+.followUpGrid header {
+  margin-block-end: var(--rm-space-7);
+}
+
+.outcomeList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-block: var(--rm-space-5);
+  border-block: 1px solid var(--rm-rule);
+}
+
+.metricList,
+.adjustmentValues {
+  display: grid;
+  margin: 0;
+}
+
+.metricList > div,
+.adjustmentValues > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--rm-space-5);
+  align-items: baseline;
+  padding-block: var(--rm-space-4);
+  border-block-start: 1px solid var(--rm-rule);
+}
+
+.metricList dt,
+.adjustmentValues dt {
+  color: var(--rm-ink);
+  font-weight: var(--rm-weight-semibold);
+}
+
+.metricList dd,
+.adjustmentValues dd {
+  margin: 0;
+  text-align: end;
+}
+
+.metricClosing {
+  margin: var(--rm-space-5) 0 0;
+  color: var(--rm-ink-muted);
+  font-size: var(--rm-fs-small);
+  line-height: var(--rm-lh-small);
+}
+
+.adjustmentGroup {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.adjustmentClosing {
+  color: var(--rm-ink-muted);
+}
+
+.comparisonClosing {
+  max-inline-size: var(--rm-measure-editorial);
+  margin-block-start: var(--rm-space-7);
+  color: var(--rm-ink);
+}
+
+.snapshotGrid {
+  display: grid;
+  gap: var(--rm-space-10);
+}
+
+.sectionLink {
+  display: inline-flex;
+  min-block-size: var(--rm-control-height-compact);
+  align-items: center;
+  margin-block-start: var(--rm-space-6);
+}
+
+@media (min-width: 720px) {
+  .consultationGrid,
+  .snapshotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 860px) {
+  .serviceGroup {
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  .adjustmentGroup {
+    grid-template-columns: minmax(200px, 0.75fr) minmax(0, 1.25fr);
+  }
+
+  .adjustmentClosing {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .followUpGrid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .outcomeList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metricList > div,
+  .adjustmentValues > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--rm-space-2);
+  }
+
+  .metricList dd,
+  .adjustmentValues dd {
+    text-align: start;
+  }
+}
+
+@media (forced-colors: active) {
+  .distinctionPanel,
+  .pricePanel,
+  .consultation,
+  .boundaryNote,
+  .metricPanel,
+  .distinctionList > div,
+  .serviceList,
+  .adjustmentList,
+  .serviceGroup,
+  .adjustmentGroup,
+  .outcomeList,
+  .metricList > div,
+  .adjustmentValues > div {
+    border-color: CanvasText;
+  }
+}

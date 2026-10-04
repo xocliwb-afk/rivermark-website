@@ -1,0 +1,61 @@
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--rm-control-height);
+  padding-inline: var(--rm-space-6);
+  border: 1px solid var(--rm-action);
+  border-radius: var(--rm-radius-standard);
+  font-size: var(--rm-fs-action);
+  font-weight: var(--rm-weight-semibold);
+  line-height: var(--rm-lh-action);
+  letter-spacing: var(--rm-tracking-action);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: var(--rm-transition-interactive);
+}
+
+.primary {
+  background: var(--rm-action);
+  color: var(--rm-canvas);
+}
+
+.primary:hover {
+  border-color: var(--rm-action-hover);
+  background: var(--rm-action-hover);
+  text-decoration: none;
+}
+
+.secondary {
+  border-color: var(--rm-border-control);
+  background: transparent;
+  color: var(--rm-action);
+}
+
+.secondary:hover {
+  border-color: var(--rm-ink);
+  background: var(--rm-surface-muted);
+  color: var(--rm-action-hover);
+  text-decoration: none;
+}
+
+.textLink {
+  color: var(--rm-action);
+  font-weight: var(--rm-weight-semibold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.textLink:hover {
+  color: var(--rm-action-hover);
+  text-decoration-thickness: 2px;
+}
+
+.inverse {
+  color: var(--rm-surface);
+}
+
+.inverse:hover {
+  color: var(--rm-canvas);
+}
