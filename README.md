@@ -1,6 +1,6 @@
 # Rivermark website
 
-Private development source for Rivermark Home Inspections. A128 authorizes the reviewed initial import to `xocliwb-afk/rivermark-website` on `main`. Repository hosting is separate from website deployment. Further commits, pushes, merges and deployment require authorization within the current owner-approved task; this is not standing permission to publish.
+Private development source for Rivermark Home Inspections, hosted at [xocliwb-afk/rivermark-website](https://github.com/xocliwb-afk/rivermark-website) on `main`. The A128 initial upload and fresh remote clone are verified; Actions is disabled, with no Pages or deployment configured. Repository hosting is separate from website deployment. Further commits, pushes, merges and deployment require authorization within the current owner-approved task; this is not standing permission to publish.
 
 ## Current approved implementation
 

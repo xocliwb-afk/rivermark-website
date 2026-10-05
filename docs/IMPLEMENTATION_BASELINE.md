@@ -4,7 +4,7 @@
 **Owner:** Brandon Wilcox  
 **Working location:** `~/Rivermark/website`  
 **Canonical authority:** `/home/brandon/Home Inspections/Master Project Sources`; `~/Rivermark/context` is read-only historical/reference context  
-**Version control:** A128 private GitHub setup authorized; local Git initialized on main, terminal authentication required; no commit, remote creation or upload yet verified. Dated local snapshots remain the rollback system.
+**Version control:** A128 private source repository at https://github.com/xocliwb-afk/rivermark-website on main; initial upload and fresh remote clone verified. Dated local snapshots remain the rollback system.
 
 ## Current local framework
 
@@ -16,7 +16,7 @@
 - ESLint
 - No Tailwind
 - No React Compiler
-- Intended private repository: `xocliwb-afk/rivermark-website`, branch `main`; creation and initial upload require actual verification
+- Verified private repository: `https://github.com/xocliwb-afk/rivermark-website`, branch `main`; Actions disabled, no Pages or deployment configured
 
 ## Product baseline
 
