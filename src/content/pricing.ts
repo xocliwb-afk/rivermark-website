@@ -445,7 +445,7 @@ export const pricingContent = {
     title: "Pricing FAQs",
   },
   finalConversion: {
-    title: "Review the property-specific price and appointment options.",
+    title: "Review a property-specific quote and appointment options.",
     paragraphs: [
       "Use Price & Availability for a standard residential quote and available times. Complete the required booking steps before treating an appointment as confirmed.",
       "For nonstandard work, choose Help with a property or quote on Contact so the scope, price, and appointment can be considered together.",

@@ -10,6 +10,8 @@ export function organizationData(): SchemaObject {
   const founder = canonicalFor("about");
   return {
     "@type": "Organization", name: "Rivermark Home Inspections",
+    description: "Independent residential home inspection services in Grand Rapids and West Michigan, with clear explanations, practical priorities and no repair sales.",
+    areaServed: ["Grand Rapids, Michigan", "West Michigan"],
     ...(home ? { "@id": `${home}#organization`, url: home, logo: `${home}brand/logo-horizontal.svg` } : {}),
     email: publicContact.email,
     ...(publicContact.phone?.approved ? { telephone: publicContact.phone.href.slice(4) } : {}),
@@ -38,11 +40,19 @@ export function StructuredData({ data }: Readonly<{ data: SchemaObject }>) {
 
 export function PageStructuredData({ route }: Readonly<{ route: SiteRouteKey }>) {
   const canonical = canonicalFor(route);
+  const home = canonicalFor("home");
   const parent: SiteRouteKey | undefined = route.endsWith("Resource") ? "resources"
     : resolveSiteRoute(route).href.startsWith("/services/") && route !== "services" ? "services" : undefined;
   const crumbs: SiteRouteKey[] = route === "home" ? ["home"] : ["home", ...(parent ? [parent] : []), route];
   return <>
     {(route === "home" || route === "about") && <StructuredData data={organizationData()} />}
+    {route === "home" && home && <StructuredData data={{
+      "@type": "WebSite",
+      "@id": `${home}#website`,
+      url: home,
+      name: "Rivermark Home Inspections",
+      publisher: { "@id": `${home}#organization` },
+    }} />}
     {route === "about" && <StructuredData data={founderData()} />}
     {canonical && route !== "home" && <StructuredData data={{
       "@type": "BreadcrumbList",

@@ -401,12 +401,12 @@ export const buyersContent = {
   },
   final: {
     eyebrow: "Your next step",
-    productionTitle: "Start with the price and the appointments currently available.",
+    productionTitle: "Start with a quote and the appointments currently available.",
     developmentTitle:
-      "Review the property-specific price and availability.",
+      "Review a property-specific quote and available times.",
     paragraphs: {
       production: [
-        "Enter the property and service information to see the calculated price and Rivermark's released schedule.",
+        "Enter the property and service information to review a quote and Rivermark's released schedule.",
         "Standard properties can continue through online scheduling. Unusual properties are routed to manual review so the scope, price, travel, and reserved time are accurate.",
       ],
       development: [

@@ -34,6 +34,18 @@ function SecureExternalAction({
   );
 }
 
+function QuoteHelp() {
+  const content = priceAvailabilityContent.transaction.quoteHelp;
+
+  return (
+    <p>
+      {content.beforeLink}{" "}
+      <a href={content.link.href}>{content.link.label}</a>
+      {content.afterLink}
+    </p>
+  );
+}
+
 function DisabledTransaction() {
   const content = priceAvailabilityContent.transaction.disabled;
 
@@ -57,6 +69,7 @@ function HostedTransaction({
     <div className={styles.transactionPanel} data-rm-transaction-state="hosted">
       <h3>{content.title}</h3>
       <Paragraphs paragraphs={content.paragraphs} />
+      <QuoteHelp />
       <SecureExternalAction href={config.hostedUrl} label={content.actionLabel} />
     </div>
   );
@@ -72,6 +85,7 @@ function EmbeddedTransaction({
   return (
     <div className={styles.transactionPanel} data-rm-transaction-state="embed">
       <Paragraphs paragraphs={content.paragraphs} />
+      <QuoteHelp />
       <SecureExternalAction
         href={config.hostedUrl}
         label={content.fallbackLabel}

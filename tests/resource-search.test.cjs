@@ -178,6 +178,246 @@ test('existing schema types gain truthful relationships without unapproved claim
   assert.doesNotMatch(escaped, /<script>bad/);
 });
 
+const organizationDescription = 'Independent residential home inspection services in Grand Rapids and West Michigan, with clear explanations, practical priorities and no repair sales.';
+function assertHomeIdentity(html, home) {
+  const nodes = schemaNodes(html);
+  assert.equal(nodes.filter(node => node['@type'] === 'Organization').length, 1);
+  const websites = nodes.filter(node => node['@type'] === 'WebSite');
+  assert.equal(websites.length, home ? 1 : 0, 'Home must have exactly one WebSite when its approved canonical exists');
+  if (home) assert.deepEqual(websites[0], {
+    '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${home}#website`,
+    url: home, name: 'Rivermark Home Inspections', publisher: { '@id': `${home}#organization` },
+  });
+  assert.doesNotMatch(JSON.stringify(nodes), /"(?:address|geo|review|aggregateRating|award|hasCredential|priceRange|offers|potentialAction)"|"(?:LocalBusiness|ProfessionalService|SearchAction|FAQPage|Product|Service)"/);
+  return nodes;
+}
+
+test('F2 Home alone emits one canonical WebSite and Home/About share the supported Organization', () => {
+  const { siteRoutes } = require('../src/config/routes.ts');
+  const home = search.canonicalFor('home');
+  const homeNodes = assertHomeIdentity(render(PageStructuredData, { route: 'home' }), home);
+  const aboutNodes = schemaNodes(render(PageStructuredData, { route: 'about' }));
+  assert.equal(aboutNodes.filter(node => node['@type'] === 'Organization').length, 1);
+  assert.equal(aboutNodes.filter(node => node['@type'] === 'Person').length, 1);
+  const organization = homeNodes.find(node => node['@type'] === 'Organization');
+  assert.deepEqual(organization, aboutNodes.find(node => node['@type'] === 'Organization'));
+  assert.equal(organization.description, organizationDescription);
+  assert.deepEqual(organization.areaServed, ['Grand Rapids, Michigan', 'West Michigan']);
+  const person = aboutNodes.find(node => node['@type'] === 'Person');
+  assert.equal(organization.founder['@id'], person['@id']);
+  assert.equal(person.worksFor['@id'], organization['@id']);
+  for (const route of Object.keys(siteRoutes).filter(route => route !== 'home')) {
+    const nodes = schemaNodes(render(PageStructuredData, { route }));
+    assert.equal(nodes.filter(node => node['@type'] === 'WebSite').length, 0, route);
+    const crumbs = nodes.find(node => node['@type'] === 'BreadcrumbList').itemListElement;
+    assert.equal(crumbs[0].item, home);
+    assert.equal(crumbs.at(-1).item, search.canonicalFor(route));
+    assert.deepEqual(crumbs.map(item => item.position), crumbs.map((_, index) => index + 1));
+    if (route === 'residentialHomeInspections') assert.equal(crumbs[1].item, search.canonicalFor('services'));
+    if (route === 'homeInspectionCostResource') assert.equal(crumbs[1].item, search.canonicalFor('resources'));
+  }
+  for (const Component of [HomePage, AboutPage]) {
+    const visible = render(Component);
+    assert.match(visible, /Grand Rapids/);
+    assert.match(visible, /West Michigan/);
+    assert.match(visible, /[Ii]ndependent/);
+    assert.match(visible, /[Nn]o repair sales|separate from repair sales/);
+  }
+});
+
+test('F2 canonical fixtures derive IDs safely and preserve missing/invalid-origin and script-escaping protections', () => {
+  const saved = publication.siteRelease.canonicalOrigin;
+  try {
+    publication.siteRelease.canonicalOrigin = 'https://fixture.example';
+    assertHomeIdentity(render(PageStructuredData, { route: 'home' }), 'https://fixture.example/');
+    publication.siteRelease.canonicalOrigin = null;
+    for (const route of ['home', 'about', 'pricing']) {
+      const html = render(PageStructuredData, { route });
+      const nodes = schemaNodes(html);
+      if (route === 'home') assertHomeIdentity(html, undefined);
+      assert.ok(nodes.every(node => !['WebSite', 'BreadcrumbList'].includes(node['@type'])));
+      assert.doesNotMatch(html, /"(?:@id|url|logo)":|undefined|localhost/);
+    }
+    for (const invalid of ['http://fixture.example', 'https://fixture.example/path', 'https://user:password@fixture.example', 'https://fixture.example/?q=x', 'not-an-origin']) {
+      publication.siteRelease.canonicalOrigin = invalid;
+      assert.throws(() => render(PageStructuredData, { route: 'home' }), Error, invalid);
+    }
+  } finally { publication.siteRelease.canonicalOrigin = saved; }
+  const text = '</script><script>alert("fixture")</script>< & >';
+  const html = render(StructuredData, { data: { '@type': 'Organization', description: text } });
+  assert.equal(schemaNodes(html)[0].description, text);
+  assert.equal([...html.matchAll(/<script\b/g)].length, 1);
+  assert.doesNotMatch(html, /<script>alert/);
+});
+
+const quoteHelpSentence = 'If the quote doesn’t match the services you selected or our published pricing, contact Rivermark before completing your request.';
+const quoteHelpParagraph = '<p>If the quote doesn’t match the services you selected or our published pricing, <a href="/contact/#manual-review">contact Rivermark</a> before completing your request.</p>';
+function assertQuoteHelp(html, mode) {
+  const expected = mode === 'disabled' ? 0 : 1;
+  const text = html.replace(/<[^>]*>/g, '');
+  assert.equal(text.split(quoteHelpSentence).length - 1, expected, 'Quote-help count must match the active transaction mode');
+  assert.equal(html.split(quoteHelpParagraph).length - 1, expected, 'Quote-help must remain one normal paragraph with its inline property-help link');
+  if (expected) {
+    const section = html.match(/<section\b[^>]*aria-labelledby="price-availability-transaction-heading"[\s\S]*?<\/section>/)?.[0];
+    assert.ok(section?.includes(quoteHelpParagraph), 'Quote-help belongs in the transaction section');
+    const following = section.slice(section.indexOf(quoteHelpParagraph) + quoteHelpParagraph.length);
+    assert.match(following, /^<a\b[^>]*href="https:\/\/widgets\.spectora\.com\/#\/fixture-review\/quote"[^>]*>Continue in Spectora<\/a>/);
+  }
+}
+function renderQuoteMode(mode) {
+  const transaction = require('../src/config/spectora-transaction.ts');
+  const { PriceAvailabilityPage } = require('../src/components/PriceAvailabilityPage.tsx');
+  const original = transaction.resolveSpectoraTransactionConfig;
+  const url = 'https://widgets.spectora.com/#/fixture-review/quote';
+  try {
+    // Explicit inputs avoid reading environment variables or changing saved configuration.
+    transaction.resolveSpectoraTransactionConfig = () => original({ mode, hostedUrl: url, embedUrl: url });
+    return render(PriceAvailabilityPage);
+  } finally { transaction.resolveSpectoraTransactionConfig = original; }
+}
+
+test('F1 actual embed/hosted/disabled modes render the approved copy, one linked help sentence and unchanged same-tab fallbacks', () => {
+  const { priceAvailabilityContent } = require('../src/content/price-availability.ts');
+  assert.equal(priceAvailabilityContent.metadata.title, 'See Price & Availability | Rivermark Home Inspections');
+  assert.equal(priceAvailabilityContent.metadata.description, 'Enter property and service details to get a quote and see available times through Spectora. Unusual properties may need individual review.');
+  const expectedHero = {
+    embed: ['Enter your property and service details to get a quote and see available times through Spectora. Complete the required booking steps before treating an appointment as confirmed.'],
+    hosted: ['Review a quote based on your property and service details and see available appointment times in Spectora.', 'Large, unusual, multi-unit, multi-building, or outer-area assignments may need individual review before an appointment can be confirmed.'],
+    disabled: ['Online quoting and scheduling are not open yet. You can review the published pricing rules while Rivermark prepares for launch.', 'Appointments will become available after the booking process is ready. Unusual properties may require manual review.'],
+  };
+  for (const mode of ['embed', 'hosted', 'disabled']) {
+    const html = renderQuoteMode(mode);
+    assertQuoteHelp(html, mode);
+    assert.match(html, new RegExp(`data-rm-transaction-state="${mode}"`));
+    const hero = html.match(/<section\b[^>]*aria-labelledby="price-availability-heading"[\s\S]*?<\/section>/)?.[0];
+    for (const paragraph of expectedHero[mode]) assert.ok(hero.includes(render('p', { children: paragraph })), `${mode}: ${paragraph}`);
+    assert.match(hero, /<h1\b[^>]*>See Price &amp; Availability<\/h1>/);
+    const externalActions = [...html.matchAll(/<a\b[^>]*href="https:\/\/widgets\.spectora\.com\/#\/fixture-review\/quote"[^>]*>Continue in Spectora<\/a>/g)];
+    assert.equal(externalActions.length, mode === 'embed' ? 2 : mode === 'hosted' ? 1 : 0);
+    for (const [anchor] of externalActions) assert.doesNotMatch(anchor, /target=|tabindex="-1"/);
+    assert.equal([...html.matchAll(/<iframe\b/g)].length, mode === 'embed' ? 1 : 0);
+    if (mode === 'disabled') assert.match(html, /No inspection or order is created here/);
+  }
+});
+
+test('F1 quote-help uses the existing adaptive Contact entry without adding a form or repeating the notice elsewhere', () => {
+  const { manualReviewHref, contactTopicFromFragment, propertyHelpTopic, inquiryGroupsFor } = require('../src/config/inquiries.ts');
+  assert.equal(manualReviewHref, '/contact/#manual-review');
+  assert.equal(contactTopicFromFragment(new URL(manualReviewHref, 'https://fixture.example').hash), propertyHelpTopic);
+  assert.equal(propertyHelpTopic, 'Help with a property or quote');
+  assert.ok(inquiryGroupsFor('contact', propertyHelpTopic).flatMap(group => group.fields).some(field => field.name === 'propertyAddress'));
+  const contact = render(ContactPage);
+  assert.equal([...contact.matchAll(/id="manual-review"/g)].length, 1);
+  assert.equal([...contact.matchAll(/<form\b/g)].length, 1);
+  for (const Component of [HomePage, PricingPage, ResidentialInspectionPage, BuyersPage, FaqPage, ContactPage, AboutPage, require('../src/components/AgentsPage.tsx').AgentsPage, require('../src/components/ServiceAreaPage.tsx').ServiceAreaPage]) {
+    assert.ok(!render(Component).replace(/<[^>]*>/g, '').includes(quoteHelpSentence), Component.name);
+  }
+});
+
+test('F1 existing embed timeout, failure and retry retain their client-state behavior without vendor requests', () => {
+  const React = require('react');
+  const { SpectoraEmbed } = require('../src/components/SpectoraEmbed.tsx');
+  const savedHooks = { useState: React.useState, useRef: React.useRef, useEffect: React.useEffect };
+  const savedWindow = global.window;
+  let values = ['loading', 0];
+  let cursor = 0;
+  let expire;
+  let effect;
+  const listeners = new Map();
+  const frame = { addEventListener: (name, handler) => listeners.set(name, handler), removeEventListener: name => listeners.delete(name) };
+  const props = { src: 'https://widgets.spectora.com/#/fixture-review/quote', title: 'Fixture quote', loadingStatus: 'Loading fixture', failureStatus: 'Fixture failed' };
+  const children = node => [node, ...[node?.props?.children].flat(Infinity).filter(child => child && typeof child === 'object').flatMap(children)];
+  try {
+    React.useState = () => {
+      const index = cursor++;
+      return [values[index], next => { values[index] = typeof next === 'function' ? next(values[index]) : next; }];
+    };
+    React.useRef = () => ({ current: frame });
+    React.useEffect = callback => { effect = callback; };
+    global.window = { setTimeout: (callback, delay) => { assert.equal(delay, 12000); expire = callback; return 1; }, clearTimeout: () => {} };
+    const draw = () => { cursor = 0; return SpectoraEmbed(props); };
+    let tree = draw();
+    const cleanup = effect();
+    const initialFrame = children(tree).find(node => node.type === 'iframe');
+    assert.ok(initialFrame);
+    initialFrame.props.onLoad();
+    expire();
+    assert.equal(values[0], 'loaded', 'A completed iframe must not fail on the old loading timeout');
+    listeners.get('error')();
+    tree = draw();
+    assert.equal(tree.props['data-rm-spectora-embed-state'], 'failed');
+    assert.equal(children(tree).filter(node => node.type === 'iframe').length, 0);
+    const retry = children(tree).find(node => node.type === 'button');
+    assert.equal(retry.props.children, 'Retry loading the quote');
+    assert.equal(retry.props.type, 'button');
+    retry.props.onClick();
+    tree = draw();
+    assert.equal(tree.props['data-rm-spectora-embed-state'], 'loading');
+    assert.equal(values[1], 1);
+    assert.notEqual(children(tree).find(node => node.type === 'iframe').key, initialFrame.key);
+    expire();
+    assert.equal(values[0], 'failed', 'A new load that times out must expose the retry state');
+    cleanup();
+    assert.equal(listeners.size, 0);
+  } finally {
+    Object.assign(React, savedHooks);
+    if (savedWindow === undefined) delete global.window; else global.window = savedWindow;
+  }
+});
+
+test('F1 changed headings and future branches render while dormant Home wording remains unused', () => {
+  const { homepageContent } = require('../src/content/home.ts');
+  const { AgentsPage } = require('../src/components/AgentsPage.tsx');
+  const { ServiceAreaPage } = require('../src/components/ServiceAreaPage.tsx');
+  const { geographyReadiness, geographyReadinessStates } = require('../src/config/geography-readiness.ts');
+  const savedWorkflow = workflowReadiness.buyerTransaction.state;
+  const savedGeography = geographyReadiness.serviceArea.state;
+  const dormant = 'The online process shows a quote based on the details entered and available appointment options. Unusual properties may require individual review.';
+  assert.ok(JSON.stringify(homepageContent).includes(dormant));
+  const fixedHeadings = [
+    [HomePage, 'h2', 'Get a quote and see available times.'],
+    [ResidentialInspectionPage, 'h3', 'Get a Property-Specific Quote and See Available Times'],
+    [PricingPage, 'h2', 'Review a property-specific quote and appointment options.'],
+    [FaqPage, 'h2', 'Still deciding? Start with a property-specific quote.'],
+  ];
+  try {
+    for (const ready of [false, true]) {
+      workflowReadiness.buyerTransaction.state = ready ? workflowReadinessStates.ready : workflowReadinessStates.pendingValidation;
+      geographyReadiness.serviceArea.state = ready ? geographyReadinessStates.ready : geographyReadinessStates.pendingValidation;
+      for (const [Component, level, title] of fixedHeadings) {
+        const headings = [...render(Component).matchAll(new RegExp(`<${level}\\b[^>]*>(.*?)<\\/${level}>`, 'gs'))].map(match => match[1]);
+        assert.ok(headings.includes(title), `${Component.name}: ${title}`);
+      }
+      const home = render(HomePage);
+      assert.ok(!home.includes(dormant));
+      const buyers = render(BuyersPage);
+      assert.ok(buyers.includes(ready ? 'Start with a quote and the appointments currently available.' : 'Review a property-specific quote and available times.'));
+      if (ready) {
+        const agents = render(AgentsPage);
+        assert.ok(agents.includes('review the quote, choose an available appointment'));
+        assert.ok(agents.includes('For a standard assignment, ask the client to enter the property details in Price &amp; Availability and review the quote and available times.'));
+        assert.ok(render(ServiceAreaPage).includes('review a property-specific quote'));
+        assert.ok(buyers.includes(render('p', { children: "Enter the property and service information to review a quote and Rivermark's released schedule." })));
+        const priceFaq = home.match(/<details\b[^>]*id="[^"]*inspection-price[^"]*"[\s\S]*?<\/details>/)?.[0];
+        assert.ok(priceFaq, 'Home must retain its actual inspection-price FAQ');
+        assert.ok(priceFaq.includes('Larger homes, condominiums, and additional units or structures use the published adjustments. Enter the property details to review the quote.'), 'The future Home price FAQ must use its approved sentence independently of other Home copy');
+      }
+    }
+  } finally {
+    workflowReadiness.buyerTransaction.state = savedWorkflow;
+    geographyReadiness.serviceArea.state = savedGeography;
+  }
+  assert.ok(render(ResourceArticle, { resource: resources[0] }).includes('The official order and accepted agreement establish your price and scope.'));
+});
+
+test('F1/F2 focused guards reject scratch duplicate notice and malformed/duplicated schema without modifying source', () => {
+  assert.throws(() => assertQuoteHelp(renderQuoteMode('embed') + quoteHelpParagraph, 'embed'), /Quote-help count/);
+  assert.throws(() => schemaNodes('<script type="application/ld+json">{"@type":"WebSite",}</script>'), SyntaxError);
+  const home = render(PageStructuredData, { route: 'home' });
+  const website = home.match(/<script type="application\/ld\+json">[^<]*"@type":"WebSite"[^<]*<\/script>/)[0];
+  assert.throws(() => assertHomeIdentity(home + website, search.canonicalFor('home')), /exactly one WebSite/);
+});
+
 test('founder wording approval controls note, fallback and pending label in both publication stages', () => {
   const note = aboutContent.background.founderNote;
   assert.equal(note.ownerWordingApproved, true);

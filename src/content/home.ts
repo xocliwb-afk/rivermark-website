@@ -281,7 +281,7 @@ export const homepageContent = {
       propertyPriceClarification:
         "Enter the property details in Price & Availability to review its quote and available appointment times.",
       availabilityClarification:
-        "Your exact property price and currently available appointments are shown through the online quote and scheduling process.",
+        "The online process shows a quote based on the details entered and available appointment options. Unusual properties may require individual review.",
       supportingLinks: [
         {
           label: "View Complete Pricing",
@@ -523,7 +523,7 @@ export const homepageContent = {
     title: "Questions before you schedule",
   },
   finalConversion: {
-    title: "See your price and available times.",
+    title: "Get a quote and see available times.",
     paragraphs: [
       "Enter the property details in the secure Spectora quote experience on Price & Availability.",
       "Review the quote and available times. A person checks unusual property, access, building or travel details when they need individual review.",

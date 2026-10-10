@@ -30,7 +30,7 @@ export const faqPageContent = {
   categoryNavigationLabel: "FAQ categories",
   final: {
     eyebrow: "A property-specific next step",
-    title: "Still deciding? Start with the property-specific price.",
+    title: "Still deciding? Start with a property-specific quote.",
     paragraphs: [
       "Use Price & Availability for a standard residential quote and available times. Complete the required booking steps before treating an appointment as confirmed.",
       "Review Pricing and Residential Home Inspections for the full detail. If the property or question needs a person, use Contact for a short question or Manual Review.",

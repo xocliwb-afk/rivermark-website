@@ -1,5 +1,18 @@
 # Rivermark Website — Codex Implementation Contract
 
+## Current A131 authorization — October 9, 2026
+
+Brandon authorizes the bounded F1 quote wording and F2 identity schema implementation,
+verification, affected records and reviewed explicit-file commit/normal main push. The
+repository is temporarily PUBLIC by the owner; older private-only A128 statements below
+are historical setup context. Do not change visibility, Actions, Pages or deployment.
+Credential/private-source exclusions remain mandatory. This candidate awaits owner visual
+sign-off; implementation does not accept Stage 8, freeze the website or authorize launch.
+A129 remains paused by owner and A130 is preserved. Future unrelated writes require their
+own task authorization. The short next step after explicit sign-off is acceptance/freeze
+closeout, not another broad review.
+
+
 ## Role
 
 Codex is the primary implementation agent for the Rivermark Home Inspections website.

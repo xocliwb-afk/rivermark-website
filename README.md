@@ -1,10 +1,10 @@
 # Rivermark website
 
-Private development source for Rivermark Home Inspections, hosted at [xocliwb-afk/rivermark-website](https://github.com/xocliwb-afk/rivermark-website) on `main`. The A128 initial upload and fresh remote clone are verified; Actions is disabled, with no Pages or deployment configured. Repository hosting is separate from website deployment. Further commits, pushes, merges and deployment require authorization within the current owner-approved task; this is not standing permission to publish.
+Website development source for Rivermark Home Inspections, hosted at [xocliwb-afk/rivermark-website](https://github.com/xocliwb-afk/rivermark-website) on `main`. The A128 initial upload and fresh remote clone were verified. Brandon has since made the repository temporarily PUBLIC for review. Actions, Pages and deployment must remain inactive; the current task records fresh verification separately. Repository hosting is separate from website deployment. Further commits, pushes, merges and deployment require authorization within the current owner-approved task; this is not standing permission to publish.
 
 ## Current approved implementation
 
-The source preserves the A127 local website candidate. Stage 8 owner walkthrough remains in progress, A127 owner re-review remains pending, and native Spectora travel commissioning is unperformed. A126 map-design acceptance is retained. No freeze or public launch is authorized.
+A131 implements the bounded final quote-wording and identity-schema polish on the A127 local website candidate. It awaits Brandon’s visual sign-off; implementation is not acceptance or a copy/design freeze. Stage 8 owner walkthrough remains in progress, A127 owner re-review remains pending, and native Spectora travel commissioning is unperformed. A126 map-design acceptance is retained. No freeze or public launch is authorized.
 
 West Olive, Macatawa and Ferrysburg are Extended. Included normal travel is $0; Extended travel is $75 total for one normal visit or $125 total for two normal visits. The physical Ferrysburg exception and property-specific confirmation rules remain controlling. The website's travel data does not configure Spectora.
 
@@ -34,7 +34,7 @@ npm run start -- --hostname 127.0.0.1 --port 3031
 npm run test:search
 ```
 
-`check` runs lint, type checking and the production build. Forms/OAuth tests use synthetic credentials and mock transports; they do not send mail. Publication checks exercise isolated flags without changing actual configuration. Search runs resource, map and travel assertions plus a **visible/headed** Chrome map check, including measured negative fixtures. It requires a working desktop display and installed Chrome; an unavailable headed run must be reported as unverified, never replaced silently with headless mode.
+`check` runs lint, type checking and the production build. Forms/OAuth tests use synthetic credentials and mock transports; they do not send mail. Publication checks exercise isolated flags without changing actual configuration. Search runs rendered quote-branch/identity-schema checks and resource, map and travel assertions plus a **visible/headed** Chrome map check, including measured negative fixtures. It requires a working desktop display and installed Chrome; an unavailable headed run must be reported as unverified, never replaced silently with headless mode.
 
 For a second clean checkout, preserve the original preview and use a separate loopback port:
 
@@ -67,4 +67,4 @@ The **31 canonical project sources remain external and authoritative** at `/home
 
 Git covers only the reviewed application, safe assets/templates, tests, package/config files and selected developer instructions. It excludes real credentials, canonical masters, source inspection reports, completed client packets, private travel research, account exports, browser profiles, snapshots, evidence archives, dependencies, builds and test output. Approved public phone, founder identity and business email are intentional content.
 
-Local verified snapshots remain outside the repository in `/home/brandon/Rivermark/snapshots`; review/export receipts remain under `/home/brandon/Rivermark/review-packs`. Take and verify the established snapshot before meaningful changes. Review explicit staged filenames, content, binary safety and reachable history for secrets before an authorized commit/push. Never use an unreviewed blanket add or bypass a protection failure. Preserve configured hooks and signing. Repository visibility must remain private; no Pages, hosting integration or automatic Actions activation is authorized.
+Local verified snapshots remain outside the repository in `/home/brandon/Rivermark/snapshots`; review/export receipts remain under `/home/brandon/Rivermark/review-packs`. Take and verify the established snapshot before meaningful changes. Review explicit staged filenames, content, binary safety and reachable history for secrets before an authorized commit/push. Never use an unreviewed blanket add or bypass a protection failure. Preserve configured hooks and signing. Do not change the owner-selected temporary public visibility; no Pages, hosting integration or automatic Actions activation is authorized. Keep private evidence and canonical sources excluded.

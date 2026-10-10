@@ -145,7 +145,7 @@ export const agentsContent = {
       title: "Share with the client",
       paragraphs: {
         production: [
-          "Use the public Price & Availability link so the buyer can enter the property information, review the price, choose an available appointment, and complete the client requirements directly.",
+          "Use the public Price & Availability link so the buyer can enter the property information, review the quote, choose an available appointment, and complete the client requirements directly.",
         ],
         development: [
           "Send the public Price & Availability link so your client can enter the property details and review the quote and available times. Use the preparation checklist below to coordinate access.",
@@ -215,7 +215,7 @@ export const agentsContent = {
         title: "Standard properties",
         paragraphs: {
           production: [
-            "Standard assignments may proceed through the public quote-and-booking flow at the published price.",
+            "For a standard assignment, ask the client to enter the property details in Price & Availability and review the quote and available times.",
           ],
           development: [
             "For a standard assignment, ask the client to enter the property details in Price & Availability and review the quote and available times.",

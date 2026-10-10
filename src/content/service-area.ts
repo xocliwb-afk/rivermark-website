@@ -92,7 +92,7 @@ export const serviceAreaContent = {
     title: "Share the address and the services you need.",
     paragraphs: {
       production: [
-        "Enter the address and service information to review the property-specific price and available times. Contact Rivermark about an outlying property or unusual assignment.",
+        "Enter the address and service information to review a property-specific quote and available times. Contact Rivermark about an outlying property or unusual assignment.",
       ],
       development: [
         "Use Price & Availability for a standard residential quote and available times. For unusual or outlying work, contact Rivermark; a displayed quote alone does not confirm acceptance of that assignment.",

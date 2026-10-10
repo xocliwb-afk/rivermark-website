@@ -130,7 +130,7 @@ export const faqCatalog = {
             showIntroductoryPricing()
           ? `Residential inspections begin at ${introductoryHousePrice} during the introductory period and ${standardHousePrice} at the standard rate through ${baseHouseCoverage} of total inspected main-building area.`
           : `Residential inspections begin at ${standardHousePrice} at the standard rate through ${baseHouseCoverage} of total inspected main-building floor area.`,
-            "Larger homes, condominiums, and additional units or structures use the published adjustments. Enter the property details to see the applicable price.",
+            "Larger homes, condominiums, and additional units or structures use the published adjustments. Enter the property details to review the quote.",
           ],
           development: [
             showIntroductoryPricing()

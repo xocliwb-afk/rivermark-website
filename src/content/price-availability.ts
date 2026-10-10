@@ -1,7 +1,8 @@
 import "server-only";
 import { travelCopy } from "@/config/travel-policy";
+import { manualReviewHref } from "@/config/inquiries";
 
-import type { SiteRouteKey } from "@/config/routes";
+import type { SiteHref, SiteRouteKey } from "@/config/routes";
 import type { SpectoraTransactionMode } from "@/config/spectora-transaction";
 
 export type PriceAvailabilityPageLink = Readonly<{
@@ -9,11 +10,17 @@ export type PriceAvailabilityPageLink = Readonly<{
   route: SiteRouteKey;
 }>;
 
+type PriceAvailabilityInlineHelp = Readonly<{
+  beforeLink: string;
+  link: Readonly<{ label: string; href: SiteHref }>;
+  afterLink: string;
+}>;
+
 export const priceAvailabilityContent = {
   metadata: {
     title: "See Price & Availability | Rivermark Home Inspections",
     description:
-      "Enter your property and service details in Rivermark's secure Spectora quote experience to review the calculated price and available appointment times.",
+      "Enter property and service details to get a quote and see available times through Spectora. Unusual properties may need individual review.",
   },
   hero: {
     eyebrow: "Property-specific pricing and scheduling",
@@ -24,11 +31,11 @@ export const priceAvailabilityContent = {
         "Appointments will become available after the booking process is ready. Unusual properties may require manual review.",
       ],
       hosted: [
-        "Review your property-specific price and available appointment times in Rivermark's secure Spectora booking experience.",
+        "Review a quote based on your property and service details and see available appointment times in Spectora.",
         "Large, unusual, multi-unit, multi-building, or outer-area assignments may need individual review before an appointment can be confirmed.",
       ],
       embed: [
-        "Enter your property and service details to see your price and available times through Spectora. Complete the required booking steps before treating an appointment as confirmed.",
+        "Enter your property and service details to get a quote and see available times through Spectora. Complete the required booking steps before treating an appointment as confirmed.",
       ],
     } satisfies Record<SpectoraTransactionMode, readonly string[]>,
     statusLabel: "Quote through Spectora",
@@ -59,6 +66,11 @@ export const priceAvailabilityContent = {
   transaction: {
     eyebrow: "Your property",
     title: "Get Your Quote",
+    quoteHelp: {
+      beforeLink: "If the quote doesn’t match the services you selected or our published pricing,",
+      link: { label: "contact Rivermark", href: manualReviewHref },
+      afterLink: " before completing your request.",
+    } satisfies PriceAvailabilityInlineHelp,
     disabled: {
       title: "Online booking is not open yet.",
       status: "Prelaunch — booking unavailable",

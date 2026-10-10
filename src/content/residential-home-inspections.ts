@@ -379,7 +379,7 @@ export const residentialHomeInspectionContent = {
     title: "From the first price check through the written report.",
     steps: [
       {
-        title: "See the Property-Specific Price and Availability",
+        title: "Get a Property-Specific Quote and See Available Times",
         paragraphs: [
           "Start with Price & Availability to enter the property details and requested services, review the calculated quote, and see available appointment times.",
           "Standard assignments will be able to continue through online scheduling. Large, unusual, multi-unit, multi-building, outer-area, or otherwise complex properties may require manual review.",
